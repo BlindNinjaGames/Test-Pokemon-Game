@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/PersistentScene.unity
+    guid: a2e26efcd058c6147b2e5c024135bd95
+  - enabled: 1
+    path: Assets/Scenes/TESTHomeTown.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/TESTRoute1.unity
+    guid: c679d5e9c1c440341b3d8e3b3f405b47
+  - enabled: 1
+    path: Assets/Scenes/TESTHouse1.unity
+    guid: e36c2d28507c9d34ba33a34c60d9aa91
+  - enabled: 1
+    path: Assets/Scenes/TESTTown2.unity
+    guid: 43dc0a0fe0ef3c24ba099c88512e1f4d
+  - enabled: 1
+    path: Assets/Scenes/TESTPokemonCenter.unity
+    guid: 21fc153463b6f694fa73f638f3300401
+  m_configObjects: {}

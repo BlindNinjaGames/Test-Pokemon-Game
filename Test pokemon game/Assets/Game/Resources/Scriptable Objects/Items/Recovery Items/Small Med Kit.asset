@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c40eebb73dc06aa47ac5d073305f7f52, type: 3}
+  m_Name: Small Med Kit
+  m_EditorClassIdentifier: 
+  name: Small Med Kit
+  description: Bandage up your wounds with this small medical kid. Heals 20 HP. Cannot
+    be used on monsters.
+  icon: {fileID: 7415438016912056806, guid: 3294a48d9e8a7a24e846b40b2569a320, type: 3}
+  price: 100
+  isSellable: 1
+  hpAmount: 20
+  restoreMaxHP: 0
+  ppAmount: 0
+  restoreMaxPP: 0
+  status: 0
+  recoverAllStatus: 0
+  revive: 0
+  maxRevive: 0

@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags: []
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Collisions
+  - Tall Grass
+  - Interactable
+  - Player
+  - FOVLayer
+  - Portal
+  - Triggers
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 1464499803
+    locked: 0
+  - name: Foreground
+    uniqueID: 3108795625
+    locked: 0
+  - name: Decorations
+    uniqueID: 771952625
+    locked: 0
+  - name: Decorations2
+    uniqueID: 2419148775
+    locked: 0
+  - name: Decorations3
+    uniqueID: 2924396795
+    locked: 0
+  - name: Collisions
+    uniqueID: 1625354073
+    locked: 0
+  - name: Player
+    uniqueID: 1172387373
+    locked: 0
+  - name: Battle
+    uniqueID: 3631856387
+    locked: 0
