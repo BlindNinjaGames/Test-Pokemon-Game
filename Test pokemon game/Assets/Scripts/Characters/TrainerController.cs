@@ -16,6 +16,7 @@ public class TrainerController : MonoBehaviour, Interactable, ISavable
     bool battleLost = false;
 
     Character character;
+
     private void Awake()
     {
         character = GetComponent<Character>();

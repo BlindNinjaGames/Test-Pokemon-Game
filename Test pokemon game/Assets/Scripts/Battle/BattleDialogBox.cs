@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Crosstales.RTVoice;
 using TMPro;
 
 public class BattleDialogBox : MonoBehaviour
@@ -23,6 +24,10 @@ public class BattleDialogBox : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI yesText;
     [SerializeField] TextMeshProUGUI noText;
+
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] string voiceName;
+    bool spoken = false;
 
     private void Start()
     {
@@ -72,9 +77,16 @@ public class BattleDialogBox : MonoBehaviour
         for (int i = 0; i < actionTexts.Count; ++i)
         {
             if (i == selectedAction)
+            {
                 actionTexts[i].color = highlightedColor;
+
+
+            }
             else
+            {
                 actionTexts[i].color = Color.black;
+
+            }
         }
     }
 
@@ -83,9 +95,14 @@ public class BattleDialogBox : MonoBehaviour
         for (int i = 0; i < moveTexts.Count; ++i)
         {
             if (i == selectedMove)
+            {
                 moveTexts[i].color = highlightedColor;
+            }
+
             else
+            {
                 moveTexts[i].color = Color.black;
+            }
         }
 
         ppText.text = $"PP {move.PP}/{move.Base.PP}";
@@ -102,9 +119,14 @@ public class BattleDialogBox : MonoBehaviour
         for (int i = 0; i < moveTexts.Count; ++i)
         {
             if (i < moves.Count)
+            {
                 moveTexts[i].text = moves[i].Base.Name;
+            }
+
             else
+            {
                 moveTexts[i].text = "-";
+            }
         }
     }
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Crosstales.RTVoice;
 
 public class MoveSelectionUI : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class MoveSelectionUI : MonoBehaviour
     [SerializeField] Color highlightedColor;
 
     int currentSelection = 0;
+
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] string voiceName;
+    bool spoken = false;
 
     public void SetMoveData(List<SO_MoveBase> currentMoves, SO_MoveBase newMove)
     {
@@ -25,9 +30,14 @@ public class MoveSelectionUI : MonoBehaviour
     public void HandleMoveSelection(Action<int> onSelected)
     {
         if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
             ++currentSelection;
+        }
+
         else if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
             --currentSelection;
+        }
 
         currentSelection = Mathf.Clamp(currentSelection, 0, SO_PokemonBase.MaxNumOfMoves);
 
@@ -42,7 +52,10 @@ public class MoveSelectionUI : MonoBehaviour
         for (int i = 0; i < SO_PokemonBase.MaxNumOfMoves + 1; i++)
         {
             if (i == selection)
+            {
                 moveTexts[i].color = highlightedColor;
+            }
+
             else
                 moveTexts[i].color = Color.black;
         }

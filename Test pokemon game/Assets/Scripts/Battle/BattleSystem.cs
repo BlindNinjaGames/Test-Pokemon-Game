@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using Crosstales.RTVoice;
 
 public enum BattleState { Start, ActionSelection, MoveSelection, TargetSelection, RunningTurn, Busy, Bag, PartyScreen, AboutToUse, MoveToForget, BattleOver }
 
@@ -55,6 +56,10 @@ public class BattleSystem : MonoBehaviour
     BattleUnit unitTryingToLearn;
 
     BattleUnit unitToSwitch;
+
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] string voiceName;
+    bool spoken = false;
 
     public void StartBattle(PokemonParty playerParty, Pokemon wildPokemon)
     {
@@ -113,8 +118,13 @@ public class BattleSystem : MonoBehaviour
             enemyUnits[0].Setup(wildPokemon);
 
             dialogBox.SetMoveNames(playerUnits[0].Pokemon.Moves);
-            yield return dialogBox.TypeDialog($"A wild {enemyUnits[0].Pokemon.Base.Name} appeared.");
+
+                Speaker.Instance.Speak("A wild " + enemyUnits[0].Pokemon.Base.Name + " appeared!", audioSource, Speaker.Instance.VoiceForName(voiceName));
+
+            yield return dialogBox.TypeDialog("A wild " + enemyUnits[0].Pokemon.Base.Name + " appeared!");
+
         }
+
         else
         {
             // Trianer Battle
@@ -131,7 +141,10 @@ public class BattleSystem : MonoBehaviour
             playerImage.sprite = player.Sprite;
             trainerImage.sprite = trainer.Sprite;
 
-            yield return dialogBox.TypeDialog($"{trainer.Name} wants to battle");
+                Speaker.Instance.Speak(trainer.Name + " wants to battle!", audioSource, Speaker.Instance.VoiceForName(voiceName));
+   
+
+            yield return dialogBox.TypeDialog(trainer.Name + " wants to battle!");
 
             // Send out first pokemon of the trainer
             trainerImage.gameObject.SetActive(false);
@@ -144,7 +157,10 @@ public class BattleSystem : MonoBehaviour
             }
 
             string names = String.Join(" and ", enemyPokemons.Select(p => p.Base.Name));
-            yield return dialogBox.TypeDialog($"{trainer.Name} send out {names}");
+
+                Speaker.Instance.Speak(trainer.Name + " sent out " + names + "!", audioSource, Speaker.Instance.VoiceForName(voiceName));
+
+            yield return dialogBox.TypeDialog(trainer.Name + " sent out " + names + "!");
 
             // Send out first pokemon of the player
             playerImage.gameObject.SetActive(false);
@@ -157,7 +173,10 @@ public class BattleSystem : MonoBehaviour
             }
 
             names = String.Join(" and ", playerPokemons.Select(p => p.Base.Name));
-            yield return dialogBox.TypeDialog($"Go {names}!");
+
+                Speaker.Instance.Speak("Go " + names + "!", audioSource, Speaker.Instance.VoiceForName(voiceName));
+
+            yield return dialogBox.TypeDialog("Go " + names + "!");
         }
 
         escapeAttempts = 0;
@@ -187,7 +206,9 @@ public class BattleSystem : MonoBehaviour
 
         dialogBox.SetMoveNames(currentUnit.Pokemon.Moves);
 
-        dialogBox.SetDialog($"Choose an action for {currentUnit.Pokemon.Base.Name}");
+            Speaker.Instance.Speak("Choose an action for " + currentUnit.Pokemon.Base.Name + ".", audioSource, Speaker.Instance.VoiceForName(voiceName));
+
+        dialogBox.SetDialog("Choose an action for " + currentUnit.Pokemon.Base.Name);
         dialogBox.EnableActionSelector(true);
     }
 
@@ -221,7 +242,10 @@ public class BattleSystem : MonoBehaviour
     IEnumerator AboutToUse(Pokemon newPokemon)
     {
         state = BattleState.Busy;
-        yield return dialogBox.TypeDialog($"{trainer.Name} is about to use {newPokemon.Base.Name}. Do you want to change pokemon?");
+
+        Speaker.Instance.Speak(trainer.Name + " is about to use " + newPokemon.Base.Name + ". Do you want to change Pokemon?", audioSource, Speaker.Instance.VoiceForName(voiceName));
+
+        yield return dialogBox.TypeDialog(trainer.Name + " is about to use " + newPokemon.Base.Name + ". Do you want to change Pokemon?");
 
         state = BattleState.AboutToUse;
         dialogBox.EnableChoiceBox(true);
@@ -230,7 +254,10 @@ public class BattleSystem : MonoBehaviour
     IEnumerator ChooseMoveToForget(Pokemon pokemon, SO_MoveBase newMove)
     {
         state = BattleState.Busy;
-        yield return dialogBox.TypeDialog($"Choose a move you wan't to forget");
+
+        Speaker.Instance.Speak("Choose a move you want to forget.", audioSource, Speaker.Instance.VoiceForName(voiceName));
+
+        yield return dialogBox.TypeDialog("Choose a move you want to forget");
         moveSelectionUI.gameObject.SetActive(true);
         moveSelectionUI.SetMoveData(pokemon.Moves.Select(x => x.Base).ToList(), newMove);
         moveToLearn = newMove;
@@ -322,7 +349,10 @@ public class BattleSystem : MonoBehaviour
         yield return ShowStatusChanges(sourceUnit.Pokemon);
 
         move.PP--;
-        yield return dialogBox.TypeDialog($"{sourceUnit.Pokemon.Base.Name} used {move.Base.Name}");
+
+        Speaker.Instance.Speak(sourceUnit.Pokemon.Base.Name + " used " + move.Base.Name + ".", audioSource, Speaker.Instance.VoiceForName(voiceName));
+
+        yield return dialogBox.TypeDialog(sourceUnit.Pokemon.Base.Name + " used " + move.Base.Name);
 
         if (CheckIfMoveHits(move, sourceUnit.Pokemon, targetUnit.Pokemon))
         {
@@ -360,7 +390,9 @@ public class BattleSystem : MonoBehaviour
         }
         else
         {
-            yield return dialogBox.TypeDialog($"{sourceUnit.Pokemon.Base.Name}'s attack missed");
+            Speaker.Instance.Speak(sourceUnit.Pokemon.Base.Name + "'s attack missed!", audioSource, Speaker.Instance.VoiceForName(voiceName));
+
+            yield return dialogBox.TypeDialog(sourceUnit.Pokemon.Base.Name + "'s attack missed!");
         }
     }
 
@@ -443,7 +475,9 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator HandlePokemonFainted(BattleUnit faintedUnit)
     {
-        yield return dialogBox.TypeDialog($"{faintedUnit.Pokemon.Base.Name} Fainted");
+        Speaker.Instance.Speak(faintedUnit.Pokemon.Base.Name + " fainted!", audioSource, Speaker.Instance.VoiceForName(voiceName));
+
+        yield return dialogBox.TypeDialog(faintedUnit.Pokemon.Base.Name + " fainted!");
         faintedUnit.PlayFaintAnimation();
         yield return new WaitForSeconds(2f);
 
@@ -468,14 +502,18 @@ public class BattleSystem : MonoBehaviour
                 var playerUnit = playerUnits[i];
 
                 playerUnit.Pokemon.Exp += expGain;
-                yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name} gained {expGain} exp");
+
+                Speaker.Instance.Speak(playerUnit.Pokemon.Base.Name + " gained " + expGain + " experience.", audioSource, Speaker.Instance.VoiceForName(voiceName));
+                yield return dialogBox.TypeDialog(playerUnit.Pokemon.Base.Name + " gained " + expGain + " exp");
                 yield return playerUnit.Hud.SetExpSmooth();
 
                 // Check Level Up
                 while (playerUnit.Pokemon.CheckForLevelUp())
                 {
                     playerUnit.Hud.SetLevel();
-                    yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name} grew to level {playerUnit.Pokemon.Level}");
+
+                    Speaker.Instance.Speak(playerUnit.Pokemon.Base.Name + " grew to level " + playerUnit.Pokemon.Level + ".", audioSource, Speaker.Instance.VoiceForName(voiceName));
+                    yield return dialogBox.TypeDialog(playerUnit.Pokemon.Base.Name + " grew to level " + playerUnit.Pokemon.Level);
 
                     // Try to learn a new Move
                     var newMove = playerUnit.Pokemon.GetLearnableMoveAtCurrLevel();
@@ -484,14 +522,20 @@ public class BattleSystem : MonoBehaviour
                         if (playerUnit.Pokemon.Moves.Count < SO_PokemonBase.MaxNumOfMoves)
                         {
                             playerUnit.Pokemon.LearnMove(newMove.Base);
-                            yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name} learned {newMove.Base.Name}");
+
+                            Speaker.Instance.Speak(playerUnit.Pokemon.Base.Name + " learned " + newMove.Base.Name + ".", audioSource, Speaker.Instance.VoiceForName(voiceName));
+                            yield return dialogBox.TypeDialog(playerUnit.Pokemon.Base.Name + " learned " + newMove.Base.Name);
                             dialogBox.SetMoveNames(playerUnit.Pokemon.Moves);
                         }
                         else
                         {
                             unitTryingToLearn = playerUnit;
-                            yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name} trying to learn {newMove.Base.Name}");
-                            yield return dialogBox.TypeDialog($"But it cannot learn more than {SO_PokemonBase.MaxNumOfMoves} moves");
+
+                            Speaker.Instance.Speak(playerUnit.Pokemon.Base.Name + " is trying to learn " + newMove.Base.Name + ".", audioSource, Speaker.Instance.VoiceForName(voiceName));
+                            yield return dialogBox.TypeDialog(playerUnit.Pokemon.Base.Name + " is trying to learn " + newMove.Base.Name);
+
+                            Speaker.Instance.Speak("But it cannot learn more than " + SO_PokemonBase.MaxNumOfMoves + " moves.", audioSource, Speaker.Instance.VoiceForName(voiceName));
+                            yield return dialogBox.TypeDialog("But it cannot learn more than " + SO_PokemonBase.MaxNumOfMoves + " moves.");
                             yield return ChooseMoveToForget(playerUnit.Pokemon, newMove.Base);
                             yield return new WaitUntil(() => state != BattleState.MoveToForget);
                             yield return new WaitForSeconds(2f);
@@ -589,12 +633,24 @@ public class BattleSystem : MonoBehaviour
     IEnumerator ShowDamageDetails(DamageDetails damageDetails)
     {
         if (damageDetails.Critical > 1f)
+        {
+            Speaker.Instance.Speak("A critical hit!", audioSource, Speaker.Instance.VoiceForName(voiceName));
             yield return dialogBox.TypeDialog("A critical hit!");
+        }
+
 
         if (damageDetails.TypeEffectiveness > 1f)
+        {
+            Speaker.Instance.Speak("It's super effective!", audioSource, Speaker.Instance.VoiceForName(voiceName));
             yield return dialogBox.TypeDialog("It's super effective!");
+        }
+
+
         else if (damageDetails.TypeEffectiveness < 1f)
+        {
+            Speaker.Instance.Speak("It's not very effective!", audioSource, Speaker.Instance.VoiceForName(voiceName));
             yield return dialogBox.TypeDialog("It's not very effective!");
+        }
     }
 
     public void HandleUpdate()
@@ -642,13 +698,17 @@ public class BattleSystem : MonoBehaviour
                 if (moveIndex == SO_PokemonBase.MaxNumOfMoves)
                 {
                     // Don't learn the new move
-                    StartCoroutine(dialogBox.TypeDialog($"{unitTryingToLearn.Pokemon.Base.Name} did not learn {moveToLearn.Name}"));
+                    Speaker.Instance.Speak(unitTryingToLearn.Pokemon.Base.Name + " did not learn " + moveToLearn.Name + ".", audioSource, Speaker.Instance.VoiceForName(voiceName));
+                    StartCoroutine(dialogBox.TypeDialog(unitTryingToLearn.Pokemon.Base.Name + " did not learn " + moveToLearn.Name));
                 }
                 else
                 {
                     // Forget the selected move and learn new move
                     var selectedMove = unitTryingToLearn.Pokemon.Moves[moveIndex].Base;
-                    StartCoroutine(dialogBox.TypeDialog($"{unitTryingToLearn.Pokemon.Base.Name} forgot {selectedMove.Name} and learned {moveToLearn.Name}"));
+                   // Speaker.Instance.Speak(selectedMove + ".", audioSource, Speaker.Instance.VoiceForName(voiceName));
+
+                    Speaker.Instance.Speak(unitTryingToLearn.Pokemon.Base.Name + " forgot " + selectedMove.Name + " and learned " + moveToLearn.Name + ".", audioSource, Speaker.Instance.VoiceForName(voiceName));
+                    StartCoroutine(dialogBox.TypeDialog(unitTryingToLearn.Pokemon.Base.Name + " forgot " + selectedMove.Name + " and learned " + moveToLearn.Name));
 
                     unitTryingToLearn.Pokemon.Moves[moveIndex] = new Move(moveToLearn);
                 }
@@ -665,13 +725,26 @@ public class BattleSystem : MonoBehaviour
     void HandleActionSelection()
     {
         if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
             ++currentAction;
+        }
+
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
             --currentAction;
+
+        }
+
         else if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
             currentAction += 2;
+
+        }
         else if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
             currentAction -= 2;
+
+        }
 
         currentAction = Mathf.Clamp(currentAction, 0, 3);
 
@@ -795,11 +868,13 @@ public class BattleSystem : MonoBehaviour
             var selectedMember = partyScreen.SelectedMember;
             if (selectedMember.HP <= 0)
             {
+                Speaker.Instance.Speak("You can't send out a fainted Pokemon!", audioSource, Speaker.Instance.VoiceForName(voiceName));
                 partyScreen.SetMessageText("You can't send out a fainted pokemon");
                 return;
             }
             if (playerUnits.Any(p => p.Pokemon == selectedMember))
             {
+                Speaker.Instance.Speak("You can't switch with an active Pokemon!", audioSource, Speaker.Instance.VoiceForName(voiceName));
                 partyScreen.SetMessageText("You can't switch with an active pokemon");
                 return;
             }
@@ -831,6 +906,7 @@ public class BattleSystem : MonoBehaviour
         {
             if (playerUnits.Any(u => u.Pokemon.HP <= 0))
             {
+                Speaker.Instance.Speak("You have to choose a Pokemon to continue!", audioSource, Speaker.Instance.VoiceForName(voiceName));
                 partyScreen.SetMessageText("You have to choose a pokemon to continue");
                 return;
             }
@@ -882,14 +958,16 @@ public class BattleSystem : MonoBehaviour
     {
         if (unitToSwitch.Pokemon.HP > 0)
         {
-            yield return dialogBox.TypeDialog($"Come back {unitToSwitch.Pokemon.Base.Name}");
+            Speaker.Instance.Speak("Come back " + unitToSwitch.Pokemon.Base.Name + "!", audioSource, Speaker.Instance.VoiceForName(voiceName));
+            yield return dialogBox.TypeDialog("Come back " + unitToSwitch.Pokemon.Base.Name);
             unitToSwitch.PlayFaintAnimation();
             yield return new WaitForSeconds(2f);
         }
 
         unitToSwitch.Setup(newPokemon);
         dialogBox.SetMoveNames(newPokemon.Moves);
-        yield return dialogBox.TypeDialog($"Go {newPokemon.Base.Name}!");
+        Speaker.Instance.Speak("Go " + newPokemon.Base.Name + "!", audioSource, Speaker.Instance.VoiceForName(voiceName));
+        yield return dialogBox.TypeDialog("Go " + newPokemon.Base.Name + "!");
 
         if (isTrainerAboutToUse)
             StartCoroutine(SendNextTrainerPokemon());
@@ -906,7 +984,9 @@ public class BattleSystem : MonoBehaviour
         var activePokemons = enemyUnits.Select(u => u.Pokemon).Where(p => p.HP > 0).ToList();
         var nextPokemon = trainerParty.GetHealthyPokemon(activePokemons);
         faintedUnit.Setup(nextPokemon);
-        yield return dialogBox.TypeDialog($"{trainer.Name} send out {nextPokemon.Base.Name}!");
+
+        Speaker.Instance.Speak(trainer.Name + " sent out " + nextPokemon.Base.Name + "!", audioSource, Speaker.Instance.VoiceForName(voiceName));
+        yield return dialogBox.TypeDialog(trainer.Name + " sent out " + nextPokemon.Base.Name + "!");
 
         state = BattleState.RunningTurn;
     }
@@ -935,7 +1015,8 @@ public class BattleSystem : MonoBehaviour
 
         if (isTrainerBattle)
         {
-            yield return dialogBox.TypeDialog($"You can't steal the trainers pokemon!");
+            Speaker.Instance.Speak("You can't steal the trainer's Pokemon", audioSource, Speaker.Instance.VoiceForName(voiceName));
+            yield return dialogBox.TypeDialog("You can't steal the trainer's Pokemon");
             state = BattleState.RunningTurn;
             yield break;
         }
@@ -943,7 +1024,8 @@ public class BattleSystem : MonoBehaviour
         var playerUnit = playerUnits[0];
         var enemyUnit = enemyUnits[0];
 
-        yield return dialogBox.TypeDialog($"{player.Name} used {pokeballItem.Name.ToUpper()}!");
+        Speaker.Instance.Speak(player.Name + " used " + pokeballItem.Name.ToUpper() + "!", audioSource, Speaker.Instance.VoiceForName(voiceName));
+        yield return dialogBox.TypeDialog(player.Name + " used " + pokeballItem.Name.ToUpper() + "!");
 
         var pokeballObj = Instantiate(pokeballSprite, playerUnit.transform.position - new Vector3(2, 0), Quaternion.identity);
         var pokeball = pokeballObj.GetComponent<SpriteRenderer>();
@@ -965,11 +1047,13 @@ public class BattleSystem : MonoBehaviour
         if (shakeCount == 4)
         {
             // Pokemon is caught
-            yield return dialogBox.TypeDialog($"{enemyUnit.Pokemon.Base.Name} was caught");
+            Speaker.Instance.Speak(enemyUnit.Pokemon.Base.Name + " was caught!", audioSource, Speaker.Instance.VoiceForName(voiceName));
+            yield return dialogBox.TypeDialog(enemyUnit.Pokemon.Base.Name + " was caught!");
             yield return pokeball.DOFade(0, 1.5f).WaitForCompletion();
 
             playerParty.AddPokemon(enemyUnit.Pokemon);
-            yield return dialogBox.TypeDialog($"{enemyUnit.Pokemon.Base.Name} has been added to your party");
+            Speaker.Instance.Speak(enemyUnit.Pokemon.Base.Name + " has been added to your party.", audioSource, Speaker.Instance.VoiceForName(voiceName));
+            yield return dialogBox.TypeDialog(enemyUnit.Pokemon.Base.Name + " has been added to your party");
 
             Destroy(pokeball);
             BattleOver(true);
@@ -982,9 +1066,15 @@ public class BattleSystem : MonoBehaviour
             yield return enemyUnit.PlayBreakOutAnimation();
 
             if (shakeCount < 2)
-                yield return dialogBox.TypeDialog($"{enemyUnit.Pokemon.Base.Name} broke free");
+            {
+                Speaker.Instance.Speak(enemyUnit.Pokemon.Base.Name + " broke free!", audioSource, Speaker.Instance.VoiceForName(voiceName));
+                yield return dialogBox.TypeDialog(enemyUnit.Pokemon.Base.Name + " broke free!");
+            }
             else
-                yield return dialogBox.TypeDialog($"Almost caught it");
+            {
+                Speaker.Instance.Speak("Almost caught it.", audioSource, Speaker.Instance.VoiceForName(voiceName));
+                yield return dialogBox.TypeDialog("Almost caught it");
+            }
 
             Destroy(pokeball);
             state = BattleState.RunningTurn;
@@ -1018,7 +1108,8 @@ public class BattleSystem : MonoBehaviour
 
         if (isTrainerBattle)
         {
-            yield return dialogBox.TypeDialog($"You can't run from trainer battles!");
+            Speaker.Instance.Speak("You can't run from trainer battles!", audioSource, Speaker.Instance.VoiceForName(voiceName));
+            yield return dialogBox.TypeDialog("You can't run from trainer battles!");
             state = BattleState.RunningTurn;
             yield break;
         }
@@ -1030,7 +1121,8 @@ public class BattleSystem : MonoBehaviour
 
         if (enemySpeed < playerSpeed)
         {
-            yield return dialogBox.TypeDialog($"Ran away safely!");
+            Speaker.Instance.Speak("Ran away safely!", audioSource, Speaker.Instance.VoiceForName(voiceName));
+            yield return dialogBox.TypeDialog("Ran away safely!");
             BattleOver(true);
         }
         else
@@ -1040,12 +1132,14 @@ public class BattleSystem : MonoBehaviour
 
             if (UnityEngine.Random.Range(0, 256) < f)
             {
-                yield return dialogBox.TypeDialog($"Ran away safely!");
+                Speaker.Instance.Speak("Ran away safely!", audioSource, Speaker.Instance.VoiceForName(voiceName));
+                yield return dialogBox.TypeDialog("Ran away safely!");
                 BattleOver(true);
             }
             else
             {
-                yield return dialogBox.TypeDialog($"Can't escape!");
+                Speaker.Instance.Speak("Can't escape!", audioSource, Speaker.Instance.VoiceForName(voiceName));
+                yield return dialogBox.TypeDialog("Can't escape!");
                 state = BattleState.RunningTurn;
             }
         }
