@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Crosstales.RTVoice;
 
 public class MoveSelectionUI : MonoBehaviour
 {
@@ -12,10 +11,6 @@ public class MoveSelectionUI : MonoBehaviour
     [SerializeField] Color highlightedColor;
 
     int currentSelection = 0;
-
-    [SerializeField] AudioSource audioSource;
-    [SerializeField] string voiceName;
-    bool spoken = false;
 
     public void SetMoveData(List<SO_MoveBase> currentMoves, SO_MoveBase newMove)
     {

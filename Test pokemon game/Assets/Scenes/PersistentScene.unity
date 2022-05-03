@@ -14546,8 +14546,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 240ba975d4c7ba843ae544cb80a50ea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slots: []
-  pokeballSlots: []
+  slots:
+  - item: {fileID: 11400000, guid: 3e9ed60e60ead1947aa3146fc435a556, type: 2}
+    count: 5
+  pokeballSlots:
+  - item: {fileID: 11400000, guid: 93a820e6688715c4dbcc1059cfbf3e97, type: 2}
+    count: 5
   harvestedSlot: []
   weaponSlot: []
   armorSlot: []

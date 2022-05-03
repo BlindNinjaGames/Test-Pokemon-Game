@@ -17,7 +17,7 @@ public class BattleDialogBox : MonoBehaviour
     [SerializeField] GameObject choiceBox;
 
     [SerializeField] List<TextMeshProUGUI> actionTexts;
-    [SerializeField] List<TextMeshProUGUI> moveTexts;
+    [SerializeField] public List<TextMeshProUGUI> moveTexts;
 
     [SerializeField] TextMeshProUGUI ppText;
     [SerializeField] TextMeshProUGUI typeText;

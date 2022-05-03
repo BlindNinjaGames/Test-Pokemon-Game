@@ -112,7 +112,6 @@ public class BattleSystem : MonoBehaviour
 
         if (!isTrainerBattle)
         {
-
             // Wild Pokemon Battle
             playerUnits[0].Setup(playerParty.GetHealthyPokemon());
             enemyUnits[0].Setup(wildPokemon);
@@ -206,7 +205,28 @@ public class BattleSystem : MonoBehaviour
 
         dialogBox.SetMoveNames(currentUnit.Pokemon.Moves);
 
-            Speaker.Instance.Speak("Choose an action for " + currentUnit.Pokemon.Base.Name + ".", audioSource, Speaker.Instance.VoiceForName(voiceName));
+            Speaker.Instance.Speak("Choose an action for " + currentUnit.Pokemon.Base.Name + "." , audioSource, Speaker.Instance.VoiceForName(voiceName));
+
+        if (currentAction == 0)
+        {
+            // Fight
+            Speaker.Instance.Speak("Fight.", audioSource, Speaker.Instance.VoiceForName(voiceName));
+        }
+        else if (currentAction == 1)
+        {
+            // Bag
+            Speaker.Instance.Speak("Bag.", audioSource, Speaker.Instance.VoiceForName(voiceName));
+        }
+        else if (currentAction == 2)
+        {
+            // Pokemon
+            Speaker.Instance.Speak("Pokemon.", audioSource, Speaker.Instance.VoiceForName(voiceName));
+        }
+        else if (currentAction == 3)
+        {
+            // Run
+            Speaker.Instance.Speak("Run.", audioSource, Speaker.Instance.VoiceForName(voiceName));
+        }
 
         dialogBox.SetDialog("Choose an action for " + currentUnit.Pokemon.Base.Name);
         dialogBox.EnableActionSelector(true);
@@ -236,6 +256,7 @@ public class BattleSystem : MonoBehaviour
     void TargetSelection()
     {
         state = BattleState.TargetSelection;
+        Speaker.Instance.Speak(enemyUnits[0].Pokemon.Base.Name, audioSource, Speaker.Instance.VoiceForName(voiceName));
         currentTarget = 0;
     }
 
@@ -589,6 +610,8 @@ public class BattleSystem : MonoBehaviour
             if (!isTrainerBattle)
             {
                 BattleOver(true);
+                currentAction = 0;
+                currentMove = 0;
                 return;
             }
 
@@ -598,6 +621,8 @@ public class BattleSystem : MonoBehaviour
             if (activePokemons.Count == 0 && nextPokemon == null)
             {
                 BattleOver(true);
+                currentAction = 0;
+                currentMove = 0;
             }
 
             else
@@ -676,6 +701,7 @@ public class BattleSystem : MonoBehaviour
             Action onBack = () =>
             {
                 inventoryUI.gameObject.SetActive(false);
+                Speaker.Instance.Speak("Bag.", audioSource, Speaker.Instance.VoiceForName(voiceName));
                 state = BattleState.ActionSelection;
             };
 
@@ -724,29 +750,128 @@ public class BattleSystem : MonoBehaviour
 
     void HandleActionSelection()
     {
+        currentAction = Mathf.Clamp(currentAction, 0, 3);
+
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             ++currentAction;
+
+            if (currentAction == 0)
+            {
+                // Fight
+                Debug.Log("Right Arrow Fight");
+                Speaker.Instance.Speak("Fight.", audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+            else if (currentAction == 1)
+            {
+                // Bag
+                Debug.Log("Right Arrow Bag");
+                Speaker.Instance.Speak("Bag.", audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+            else if (currentAction == 2)
+            {
+                // Pokemon
+                Debug.Log("Right Arrow Pokemon");
+                Speaker.Instance.Speak("Pokemon.", audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+            else if (currentAction == 3)
+            {
+                // Run
+                Debug.Log("Right Arrow Run");
+                Speaker.Instance.Speak("Run.", audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
         }
 
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             --currentAction;
 
+            if (currentAction == 0)
+            {
+                // Fight
+                Debug.Log("Left Arrow Fight");
+                Speaker.Instance.Speak("Fight.", audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+            else if (currentAction == 1)
+            {
+                // Bag
+                Debug.Log("Left Arrow Bag");
+                Speaker.Instance.Speak("Bag.", audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+            else if (currentAction == 2)
+            {
+                // Pokemon
+                Debug.Log("Left Arrow Pokemon");
+                Speaker.Instance.Speak("Pokemon.", audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+            else if (currentAction == 3)
+            {
+                // Run
+                Debug.Log("Left Arrow Run");
+                Speaker.Instance.Speak("Run.", audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
         }
 
         else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             currentAction += 2;
 
+            if (currentAction == 0)
+            {
+                // Fight
+                Debug.Log("Down Arrow Fight");
+                Speaker.Instance.Speak("Fight.", audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+            else if (currentAction == 1)
+            {
+                // Bag
+                Debug.Log("Down Arrow Bag");
+                Speaker.Instance.Speak("Bag.", audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+            else if (currentAction == 2)
+            {
+                // Pokemon
+                Debug.Log("Down Arrow Pokemon");
+                Speaker.Instance.Speak("Pokemon.", audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+            else if (currentAction == 3)
+            {
+                // Run
+                Debug.Log("Down Arrow Run");
+                Speaker.Instance.Speak("Run.", audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
         }
         else if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             currentAction -= 2;
 
+            if (currentAction == 0)
+            {
+                // Fight
+                Debug.Log("Up Arrow Fight");
+                Speaker.Instance.Speak("Fight.", audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+            else if (currentAction == 1)
+            {
+                // Bag
+                Debug.Log("Up Arrow Bag");
+                Speaker.Instance.Speak("Bag.", audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+            else if (currentAction == 2)
+            {
+                // Pokemon
+                Debug.Log("Up Arrow Pokemon");
+                Speaker.Instance.Speak("Pokemon.", audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+            else if (currentAction == 3)
+            {
+                // Run
+                Debug.Log("Up Arrow Run");
+                Speaker.Instance.Speak("Run.", audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
         }
 
-        currentAction = Mathf.Clamp(currentAction, 0, 3);
+       // currentAction = Mathf.Clamp(currentAction, 0, 3);
 
         dialogBox.UpdateActionSelection(currentAction);
 
@@ -756,6 +881,30 @@ public class BattleSystem : MonoBehaviour
             {
                 // Fight
                 MoveSelection();
+
+                if (currentMove == 0)
+                {
+                    Debug.Log(dialogBox.moveTexts[0].text);
+                    Speaker.Instance.Speak(dialogBox.moveTexts[0].text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+                }
+
+                else if (currentMove == 1)
+                {
+                    Debug.Log(dialogBox.moveTexts[1].text);
+                    Speaker.Instance.Speak(dialogBox.moveTexts[1].text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+                }
+
+                else if (currentMove == 2)
+                {
+                    Debug.Log(dialogBox.moveTexts[2].text);
+                    Speaker.Instance.Speak(dialogBox.moveTexts[2].text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+                }
+
+                else if (currentMove == 3)
+                {
+                    Debug.Log(dialogBox.moveTexts[3].text);
+                    Speaker.Instance.Speak(dialogBox.moveTexts[3].text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+                }
             }
             else if (currentAction == 1)
             {
@@ -782,23 +931,136 @@ public class BattleSystem : MonoBehaviour
 
     void HandleMoveSelection()
     {
+        currentMove = Mathf.Clamp(currentMove, 0, currentUnit.Pokemon.Moves.Count - 1);
+
         if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
             ++currentMove;
+
+            if(currentMove == 0)
+            {
+                Debug.Log(dialogBox.moveTexts[0].text);
+                Speaker.Instance.Speak(dialogBox.moveTexts[0].text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+
+            else if(currentMove == 1)
+            {
+                Debug.Log(dialogBox.moveTexts[1].text);
+                Speaker.Instance.Speak(dialogBox.moveTexts[1].text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+
+           else if (currentMove == 2)
+            {
+                Debug.Log(dialogBox.moveTexts[2].text);
+                Speaker.Instance.Speak(dialogBox.moveTexts[2].text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+
+            else if (currentMove == 3)
+            {
+                Debug.Log(dialogBox.moveTexts[3].text);
+                Speaker.Instance.Speak(dialogBox.moveTexts[3].text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+        }
+
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
             --currentMove;
+
+            if (currentMove == 0)
+            {
+                Debug.Log(dialogBox.moveTexts[0].text);
+                Speaker.Instance.Speak(dialogBox.moveTexts[0].text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+
+            else if (currentMove == 1)
+            {
+                Debug.Log(dialogBox.moveTexts[1].text);
+                Speaker.Instance.Speak(dialogBox.moveTexts[1].text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+
+            else if (currentMove == 2)
+            {
+                Debug.Log(dialogBox.moveTexts[2].text);
+                Speaker.Instance.Speak(dialogBox.moveTexts[2].text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+
+            else if (currentMove == 3)
+            {
+                Debug.Log(dialogBox.moveTexts[3].text);
+                Speaker.Instance.Speak(dialogBox.moveTexts[3].text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+        }
+
         else if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
             currentMove += 2;
+
+            if (currentMove == 0)
+            {
+                Debug.Log(dialogBox.moveTexts[0].text);
+                Speaker.Instance.Speak(dialogBox.moveTexts[0].text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+
+            else if (currentMove == 1)
+            {
+                Debug.Log(dialogBox.moveTexts[1].text);
+                Speaker.Instance.Speak(dialogBox.moveTexts[1].text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+
+            else if (currentMove == 2)
+            {
+                Debug.Log(dialogBox.moveTexts[2].text);
+                Speaker.Instance.Speak(dialogBox.moveTexts[2].text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+
+            else if (currentMove == 3)
+            {
+                Debug.Log(dialogBox.moveTexts[3].text);
+                Speaker.Instance.Speak(dialogBox.moveTexts[3].text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+        }
+
         else if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
             currentMove -= 2;
 
-        currentMove = Mathf.Clamp(currentMove, 0, currentUnit.Pokemon.Moves.Count - 1);
+            if (currentMove == 0)
+            {
+                Debug.Log(dialogBox.moveTexts[0].text);
+                Speaker.Instance.Speak(dialogBox.moveTexts[0].text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+
+            else if (currentMove == 1)
+            {
+                Debug.Log(dialogBox.moveTexts[1].text);
+                Speaker.Instance.Speak(dialogBox.moveTexts[1].text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+
+            else if (currentMove == 2)
+            {
+                Debug.Log(dialogBox.moveTexts[2].text);
+                Speaker.Instance.Speak(dialogBox.moveTexts[2].text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+
+            else if (currentMove == 3)
+            {
+                Debug.Log(dialogBox.moveTexts[3].text);
+                Speaker.Instance.Speak(dialogBox.moveTexts[3].text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+        }
+
+        //currentMove = Mathf.Clamp(currentMove, 0, currentUnit.Pokemon.Moves.Count - 1);
 
         dialogBox.UpdateMoveSelection(currentMove, currentUnit.Pokemon.Moves[currentMove]);
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
             var move = currentUnit.Pokemon.Moves[currentMove];
-            if (move.PP == 0) return;
+            if (move.PP == 0)
+            {
+                Speaker.Instance.Speak("No move points left.", audioSource, Speaker.Instance.VoiceForName(voiceName));
+                return;
+            }
 
             dialogBox.EnableMoveSelector(false);
             dialogBox.EnableDialogText(true);
@@ -829,12 +1091,25 @@ public class BattleSystem : MonoBehaviour
 
     void HandleTargetSelection()
     {
+        currentTarget = Mathf.Clamp(currentTarget, 0, enemyUnits.Count - 1);
+
         if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
             ++currentTarget;
+
+            Debug.Log(enemyUnits[1].Pokemon.Base.Name);
+            Speaker.Instance.Speak(enemyUnits[1].Pokemon.Base.Name, audioSource, Speaker.Instance.VoiceForName(voiceName));
+        }
+
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
             --currentTarget;
 
-        currentTarget = Mathf.Clamp(currentTarget, 0, enemyUnits.Count - 1);
+            Debug.Log(enemyUnits[0].Pokemon.Base.Name);
+            Speaker.Instance.Speak(enemyUnits[0].Pokemon.Base.Name, audioSource, Speaker.Instance.VoiceForName(voiceName));
+        }
+
+       // currentTarget = Mathf.Clamp(currentTarget, 0, enemyUnits.Count - 1);
 
         for (int i = 0; i < enemyUnits.Count; i++)
         {
@@ -1024,7 +1299,7 @@ public class BattleSystem : MonoBehaviour
         var playerUnit = playerUnits[0];
         var enemyUnit = enemyUnits[0];
 
-        Speaker.Instance.Speak(player.Name + " used " + pokeballItem.Name.ToUpper() + "!", audioSource, Speaker.Instance.VoiceForName(voiceName));
+        Speaker.Instance.Speak(player.Name + " used " + pokeballItem.Name + "!", audioSource, Speaker.Instance.VoiceForName(voiceName));
         yield return dialogBox.TypeDialog(player.Name + " used " + pokeballItem.Name.ToUpper() + "!");
 
         var pokeballObj = Instantiate(pokeballSprite, playerUnit.transform.position - new Vector3(2, 0), Quaternion.identity);
@@ -1057,6 +1332,8 @@ public class BattleSystem : MonoBehaviour
 
             Destroy(pokeball);
             BattleOver(true);
+            currentAction = 0;
+            currentMove = 0;
         }
         else
         {
@@ -1124,6 +1401,8 @@ public class BattleSystem : MonoBehaviour
             Speaker.Instance.Speak("Ran away safely!", audioSource, Speaker.Instance.VoiceForName(voiceName));
             yield return dialogBox.TypeDialog("Ran away safely!");
             BattleOver(true);
+            currentAction = 0;
+            currentMove = 0;
         }
         else
         {
@@ -1135,6 +1414,8 @@ public class BattleSystem : MonoBehaviour
                 Speaker.Instance.Speak("Ran away safely!", audioSource, Speaker.Instance.VoiceForName(voiceName));
                 yield return dialogBox.TypeDialog("Ran away safely!");
                 BattleOver(true);
+                currentAction = 0;
+                currentMove = 0;
             }
             else
             {
