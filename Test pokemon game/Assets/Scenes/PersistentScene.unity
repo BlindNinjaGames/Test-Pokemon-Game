@@ -3411,12 +3411,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wildPokemons:
-  - _base: {fileID: 11400000, guid: a40bc6ebdc92d9f43a03ef168e2b7da5, type: 2}
-    level: 1
-  - _base: {fileID: 11400000, guid: 33be44789e0b9d5429074a804a8ed9a2, type: 2}
-    level: 1
-  - _base: {fileID: 11400000, guid: bb5e920b08004fd4ebc9e265dbfb13a3, type: 2}
-    level: 1
+  - pokemon: {fileID: 11400000, guid: a40bc6ebdc92d9f43a03ef168e2b7da5, type: 2}
+    levelRange: {x: 1, y: 5}
+    chancePercentage: 5
+  - pokemon: {fileID: 11400000, guid: 33be44789e0b9d5429074a804a8ed9a2, type: 2}
+    levelRange: {x: 1, y: 5}
+    chancePercentage: 80
+  - pokemon: {fileID: 11400000, guid: bb5e920b08004fd4ebc9e265dbfb13a3, type: 2}
+    levelRange: {x: 1, y: 5}
+    chancePercentage: 15
 --- !u!1001 &1375678083
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4470,7 +4473,7 @@ GameObject:
   - component: {fileID: 1551207252}
   - component: {fileID: 1551207251}
   m_Layer: 0
-  m_Name: RT Audio Source
+  m_Name: RTVoice Audio Source
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4489,7 +4492,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: -1.11
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -5324,8 +5327,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wildPokemons:
-  - _base: {fileID: 11400000, guid: bb5e920b08004fd4ebc9e265dbfb13a3, type: 2}
-    level: 1
+  - pokemon: {fileID: 11400000, guid: bb5e920b08004fd4ebc9e265dbfb13a3, type: 2}
+    levelRange: {x: 1, y: 1}
+    chancePercentage: 100
 --- !u!1 &1684269926
 GameObject:
   m_ObjectHideFlags: 0
@@ -17783,8 +17787,6 @@ MonoBehaviour:
   - {fileID: 3660157101859610706}
   - {fileID: 3660157100855052766}
   highlightedColor: {r: 0, g: 0.10980392, b: 1, a: 1}
-  audioSource: {fileID: 1551207251}
-  voiceName: 
 --- !u!1 &3660157102121421952
 GameObject:
   m_ObjectHideFlags: 0

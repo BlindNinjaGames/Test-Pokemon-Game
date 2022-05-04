@@ -118,7 +118,7 @@ public class BattleSystem : MonoBehaviour
 
             dialogBox.SetMoveNames(playerUnits[0].Pokemon.Moves);
 
-                Speaker.Instance.Speak("A wild " + enemyUnits[0].Pokemon.Base.Name + " appeared!", audioSource, Speaker.Instance.VoiceForName(voiceName));
+            Speaker.Instance.Speak("A wild " + enemyUnits[0].Pokemon.Base.Name + " appeared!", audioSource, Speaker.Instance.VoiceForName(voiceName));
 
             yield return dialogBox.TypeDialog("A wild " + enemyUnits[0].Pokemon.Base.Name + " appeared!");
 
@@ -140,8 +140,8 @@ public class BattleSystem : MonoBehaviour
             playerImage.sprite = player.Sprite;
             trainerImage.sprite = trainer.Sprite;
 
-                Speaker.Instance.Speak(trainer.Name + " wants to battle!", audioSource, Speaker.Instance.VoiceForName(voiceName));
-   
+            Speaker.Instance.Speak(trainer.Name + " wants to battle!", audioSource, Speaker.Instance.VoiceForName(voiceName));
+
 
             yield return dialogBox.TypeDialog(trainer.Name + " wants to battle!");
 
@@ -157,7 +157,7 @@ public class BattleSystem : MonoBehaviour
 
             string names = String.Join(" and ", enemyPokemons.Select(p => p.Base.Name));
 
-                Speaker.Instance.Speak(trainer.Name + " sent out " + names + "!", audioSource, Speaker.Instance.VoiceForName(voiceName));
+            Speaker.Instance.Speak(trainer.Name + " sent out " + names + "!", audioSource, Speaker.Instance.VoiceForName(voiceName));
 
             yield return dialogBox.TypeDialog(trainer.Name + " sent out " + names + "!");
 
@@ -173,7 +173,7 @@ public class BattleSystem : MonoBehaviour
 
             names = String.Join(" and ", playerPokemons.Select(p => p.Base.Name));
 
-                Speaker.Instance.Speak("Go " + names + "!", audioSource, Speaker.Instance.VoiceForName(voiceName));
+            Speaker.Instance.Speak("Go " + names + "!", audioSource, Speaker.Instance.VoiceForName(voiceName));
 
             yield return dialogBox.TypeDialog("Go " + names + "!");
         }
@@ -205,7 +205,7 @@ public class BattleSystem : MonoBehaviour
 
         dialogBox.SetMoveNames(currentUnit.Pokemon.Moves);
 
-            Speaker.Instance.Speak("Choose an action for " + currentUnit.Pokemon.Base.Name + "." , audioSource, Speaker.Instance.VoiceForName(voiceName));
+        Speaker.Instance.Speak("Choose an action for " + currentUnit.Pokemon.Base.Name + ".", audioSource, Speaker.Instance.VoiceForName(voiceName));
 
         if (currentAction == 0)
         {
@@ -533,6 +533,7 @@ public class BattleSystem : MonoBehaviour
                 {
                     playerUnit.Hud.SetLevel();
 
+
                     Speaker.Instance.Speak(playerUnit.Pokemon.Base.Name + " grew to level " + playerUnit.Pokemon.Level + ".", audioSource, Speaker.Instance.VoiceForName(voiceName));
                     yield return dialogBox.TypeDialog(playerUnit.Pokemon.Base.Name + " grew to level " + playerUnit.Pokemon.Level);
 
@@ -731,7 +732,7 @@ public class BattleSystem : MonoBehaviour
                 {
                     // Forget the selected move and learn new move
                     var selectedMove = unitTryingToLearn.Pokemon.Moves[moveIndex].Base;
-                   // Speaker.Instance.Speak(selectedMove + ".", audioSource, Speaker.Instance.VoiceForName(voiceName));
+                    // Speaker.Instance.Speak(selectedMove + ".", audioSource, Speaker.Instance.VoiceForName(voiceName));
 
                     Speaker.Instance.Speak(unitTryingToLearn.Pokemon.Base.Name + " forgot " + selectedMove.Name + " and learned " + moveToLearn.Name + ".", audioSource, Speaker.Instance.VoiceForName(voiceName));
                     StartCoroutine(dialogBox.TypeDialog(unitTryingToLearn.Pokemon.Base.Name + " forgot " + selectedMove.Name + " and learned " + moveToLearn.Name));
@@ -871,7 +872,7 @@ public class BattleSystem : MonoBehaviour
             }
         }
 
-       // currentAction = Mathf.Clamp(currentAction, 0, 3);
+        // currentAction = Mathf.Clamp(currentAction, 0, 3);
 
         dialogBox.UpdateActionSelection(currentAction);
 
@@ -937,19 +938,19 @@ public class BattleSystem : MonoBehaviour
         {
             ++currentMove;
 
-            if(currentMove == 0)
+            if (currentMove == 0)
             {
                 Debug.Log(dialogBox.moveTexts[0].text);
                 Speaker.Instance.Speak(dialogBox.moveTexts[0].text, audioSource, Speaker.Instance.VoiceForName(voiceName));
             }
 
-            else if(currentMove == 1)
+            else if (currentMove == 1)
             {
                 Debug.Log(dialogBox.moveTexts[1].text);
                 Speaker.Instance.Speak(dialogBox.moveTexts[1].text, audioSource, Speaker.Instance.VoiceForName(voiceName));
             }
 
-           else if (currentMove == 2)
+            else if (currentMove == 2)
             {
                 Debug.Log(dialogBox.moveTexts[2].text);
                 Speaker.Instance.Speak(dialogBox.moveTexts[2].text, audioSource, Speaker.Instance.VoiceForName(voiceName));
@@ -1109,7 +1110,7 @@ public class BattleSystem : MonoBehaviour
             Speaker.Instance.Speak(enemyUnits[0].Pokemon.Base.Name, audioSource, Speaker.Instance.VoiceForName(voiceName));
         }
 
-       // currentTarget = Mathf.Clamp(currentTarget, 0, enemyUnits.Count - 1);
+        // currentTarget = Mathf.Clamp(currentTarget, 0, enemyUnits.Count - 1);
 
         for (int i = 0; i < enemyUnits.Count; i++)
         {
