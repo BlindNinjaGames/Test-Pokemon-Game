@@ -6,8 +6,8 @@ using TMPro;
 
 public class PartyMemberUI : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI nameText;
-    [SerializeField] TextMeshProUGUI levelText;
+    [SerializeField]  TextMeshProUGUI partyMemberUINameText;
+    [SerializeField]  TextMeshProUGUI partyMemberUILevelText;
     [SerializeField] HPBar hpBar;
     [SerializeField] bool isPlayer;
 
@@ -23,17 +23,17 @@ public class PartyMemberUI : MonoBehaviour
 
     void UpdateData()
     {
-        nameText.text = _pokemon.Base.Name;
-        levelText.text = "Lvl " + _pokemon.Level;
+        partyMemberUINameText.text = _pokemon.Base.Name;
+        partyMemberUILevelText.text = _pokemon.Level.ToString();
         hpBar.SetHP((float)_pokemon.HP / _pokemon.MaxHp);
     }
 
     public void SetSelected(bool selected)
     {
         if (selected)
-            nameText.color = GlobalSettings.i.HighlightedColor;
+            partyMemberUINameText.color = GlobalSettings.i.HighlightedColor;
         else
-            nameText.color = Color.black;
+            partyMemberUINameText.color = Color.black;
     }
 
 

@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Crosstales.RTVoice;
 
 public class Healer : MonoBehaviour
 {
     [SerializeField] float fadeTimer = 0.5f;
+
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] string voiceName;
 
     public IEnumerator Heal(Transform player, Dialog dialog)
     {
@@ -25,12 +29,15 @@ public class Healer : MonoBehaviour
 
             yield return Fader.i.FadeOut(fadeTimer);
 
-            yield return DialogManager.Instance.ShowDialogText($"Your pokemon should be fully healed now");
+            Speaker.Instance.Speak("Your Pokemon should be fully healed now.", audioSource, Speaker.Instance.VoiceForName(voiceName));
+
+            yield return DialogManager.Instance.ShowDialogText("Your Pokemon should be fully healed now.");
         }
         else if (selectedChoice == 1)
         {
             // No
-            yield return DialogManager.Instance.ShowDialogText($"Okay! Come back if you change your mind");
+            Speaker.Instance.Speak("Okay! Come back if you change your mind.", audioSource, Speaker.Instance.VoiceForName(voiceName));
+            yield return DialogManager.Instance.ShowDialogText("Okay! Come back if you change your mind.");
         }
 
 

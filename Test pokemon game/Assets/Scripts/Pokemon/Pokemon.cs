@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Crosstales.RTVoice;
 
 [System.Serializable]
 public class Pokemon
@@ -159,9 +160,16 @@ public class Pokemon
             StatBoosts[stat] = Mathf.Clamp(StatBoosts[stat] + boost, -6, 6);
 
             if (boost > 0)
-                StatusChanges.Enqueue($"{Base.Name}'s {stat} rose!");
+            {
+                Speaker.Instance.SpeakNative(Base.Name + "'s " + stat + " rose!");
+                StatusChanges.Enqueue(Base.Name + "'s " + stat + " rose!");
+            }
+
             else
-                StatusChanges.Enqueue($"{Base.Name}'s {stat} fell!");
+            {
+                Speaker.Instance.SpeakNative(Base.Name + "'s " + stat + " fell!");
+                StatusChanges.Enqueue(Base.Name + "'s " + stat + " fell!");
+            }
 
             Debug.Log($"{stat} has been boosted to {StatBoosts[stat]}");
         }
@@ -281,7 +289,8 @@ public class Pokemon
 
         Status = ConditionsDB.Conditions[conditionId];
         Status?.OnStart?.Invoke(this);
-        StatusChanges.Enqueue($"{Base.Name} {Status.StartMessage}");
+        Speaker.Instance.SpeakNative(Base.Name + Status.StartMessage);
+        StatusChanges.Enqueue(Base.Name + Status.StartMessage);
         OnStatusChanged?.Invoke();
     }
 
@@ -297,7 +306,8 @@ public class Pokemon
 
         VolatileStatus = ConditionsDB.Conditions[conditionId];
         VolatileStatus?.OnStart?.Invoke(this);
-        StatusChanges.Enqueue($"{Base.Name} {VolatileStatus.StartMessage}");
+        Speaker.Instance.SpeakNative(Base.Name + VolatileStatus.StartMessage);
+        StatusChanges.Enqueue(Base.Name + VolatileStatus.StartMessage);
     }
 
     public void CureVolatileStatus()

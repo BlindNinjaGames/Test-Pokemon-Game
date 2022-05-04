@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Crosstales.RTVoice;
 
 public class ConditionsDB
 {
+
     public static void Init()
     {
         foreach (var kvp in Conditions)
@@ -22,11 +24,12 @@ public class ConditionsDB
             new Condition()
             {
                 Name = "Poison",
-                StartMessage = "has been poisoned",
+                StartMessage = " has been poisoned",
                 OnAfterTurn = (Pokemon pokemon) =>
                 {
                     pokemon.DecreaseHP(pokemon.MaxHp / 8);
-                    pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} hurt itself due to poison");
+                    Speaker.Instance.SpeakNative(pokemon.Base.Name + " was hurt due to poison."); //, audioSource, Speaker.Instance.VoiceForName(voiceName));
+                    pokemon.StatusChanges.Enqueue(pokemon.Base.Name + " was hurt due to poison");
                 }
             }
         },
@@ -35,11 +38,12 @@ public class ConditionsDB
             new Condition()
             {
                 Name = "Burn",
-                StartMessage = "has been burned",
+                StartMessage = " has been burned",
                 OnAfterTurn = (Pokemon pokemon) =>
                 {
                     pokemon.DecreaseHP(pokemon.MaxHp / 16);
-                    pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} hurt itself due to burn");
+                    Speaker.Instance.SpeakNative(pokemon.Base.Name + " was hurt due to burn.");
+                    pokemon.StatusChanges.Enqueue(pokemon.Base.Name + " was hurt due to burn");
                 }
             }
         },
@@ -48,12 +52,13 @@ public class ConditionsDB
             new Condition()
             {
                 Name = "Paralyzed",
-                StartMessage = "has been paralyzed",
+                StartMessage = " has been paralyzed",
                 OnBeforeMove = (Pokemon pokemon) =>
                 {
                     if  (Random.Range(1, 5) == 1)
                     {
-                        pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name}'s paralyzed and can't move");
+                        Speaker.Instance.SpeakNative(pokemon.Base.Name + " is paralyzed and can't move!");
+                        pokemon.StatusChanges.Enqueue(pokemon.Base.Name + " is paralyzed and can't move!");
                         return false;
                     }
 
@@ -66,13 +71,14 @@ public class ConditionsDB
             new Condition()
             {
                 Name = "Freeze",
-                StartMessage = "has been frozen",
+                StartMessage = " has been frozen",
                 OnBeforeMove = (Pokemon pokemon) =>
                 {
                     if  (Random.Range(1, 5) == 1)
                     {
                         pokemon.CureStatus();
-                        pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name}'s is not frozen anymore");
+                        Speaker.Instance.SpeakNative(pokemon.Base.Name + " is not frozen anymore.");
+                        pokemon.StatusChanges.Enqueue(pokemon.Base.Name + " is not frozen anymore");
                         return true;
                     }
 
@@ -85,7 +91,7 @@ public class ConditionsDB
             new Condition()
             {
                 Name = "Sleep",
-                StartMessage = "has fallen asleep",
+                StartMessage = " has fallen asleep",
                 OnStart = (Pokemon pokemon) =>
                 {
                     // Sleep for 1-3 turns
@@ -97,12 +103,14 @@ public class ConditionsDB
                     if (pokemon.StatusTime <= 0)
                     {
                         pokemon.CureStatus();
-                        pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} woke up!");
+                        Speaker.Instance.SpeakNative(pokemon.Base.Name + " woke up!");
+                        pokemon.StatusChanges.Enqueue(pokemon.Base.Name + " woke up!");
                         return true;
                     }
 
                     pokemon.StatusTime--;
-                    pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is sleeping");
+                    Speaker.Instance.SpeakNative(pokemon.Base.Name + " is sleeping!");
+                    pokemon.StatusChanges.Enqueue(pokemon.Base.Name + " is sleeping!");
                     return false;
                 }
             }
@@ -114,7 +122,7 @@ public class ConditionsDB
             new Condition()
             {
                 Name = "Confusion",
-                StartMessage = "has been confused",
+                StartMessage = " has been confused",
                 OnStart = (Pokemon pokemon) =>
                 {
                     // Confused for 1 - 4 turns
@@ -126,7 +134,8 @@ public class ConditionsDB
                     if (pokemon.VolatileStatusTime <= 0)
                     {
                         pokemon.CureVolatileStatus();
-                        pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} kicked out of confusion!");
+                        Speaker.Instance.SpeakNative(pokemon.Base.Name + " is no longer confused!");
+                        pokemon.StatusChanges.Enqueue(pokemon.Base.Name + " is no longer confused!");
                         return true;
                     }
                     pokemon.VolatileStatusTime--;
@@ -136,9 +145,11 @@ public class ConditionsDB
                         return true;
 
                     // Hurt by confusion
-                    pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is confused");
+                    Speaker.Instance.SpeakNative(pokemon.Base.Name + " is confused.");
+                    pokemon.StatusChanges.Enqueue(pokemon.Base.Name + " is confused");
                     pokemon.DecreaseHP(pokemon.MaxHp / 8);
-                    pokemon.StatusChanges.Enqueue($"It hurt itself due to confusion");
+                    Speaker.Instance.SpeakNative("It hurt itself in its confusion!");
+                    pokemon.StatusChanges.Enqueue("It hurt itself in its confusion!");
                     return false;
                 }
             }

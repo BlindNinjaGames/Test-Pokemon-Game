@@ -533,7 +533,6 @@ public class BattleSystem : MonoBehaviour
                 {
                     playerUnit.Hud.SetLevel();
 
-
                     Speaker.Instance.Speak(playerUnit.Pokemon.Base.Name + " grew to level " + playerUnit.Pokemon.Level + ".", audioSource, Speaker.Instance.VoiceForName(voiceName));
                     yield return dialogBox.TypeDialog(playerUnit.Pokemon.Base.Name + " grew to level " + playerUnit.Pokemon.Level);
 
@@ -1205,7 +1204,21 @@ public class BattleSystem : MonoBehaviour
     void HandleAboutToUse()
     {
         if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
+        {
             aboutToUseChoice = !aboutToUseChoice;
+
+            if(aboutToUseChoice)
+            {
+                Debug.Log(aboutToUseChoice);
+                Speaker.Instance.Speak("Yes.", audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+
+            else
+            {
+                Debug.Log(aboutToUseChoice);
+                Speaker.Instance.Speak("No.", audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+        }
 
         dialogBox.UpdateChoiceBox(aboutToUseChoice);
 
@@ -1291,8 +1304,8 @@ public class BattleSystem : MonoBehaviour
 
         if (isTrainerBattle)
         {
-            Speaker.Instance.Speak("You can't steal the trainer's Pokemon", audioSource, Speaker.Instance.VoiceForName(voiceName));
-            yield return dialogBox.TypeDialog("You can't steal the trainer's Pokemon");
+            Speaker.Instance.Speak("You can't steal the trainer's Pokemon!", audioSource, Speaker.Instance.VoiceForName(voiceName));
+            yield return dialogBox.TypeDialog("You can't steal the trainer's Pokemon!");
             state = BattleState.RunningTurn;
             yield break;
         }

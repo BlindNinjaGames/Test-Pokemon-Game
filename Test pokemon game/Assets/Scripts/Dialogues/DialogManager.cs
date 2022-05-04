@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Crosstales.RTVoice;
 
 public class DialogManager : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class DialogManager : MonoBehaviour
 
     public event Action OnShowDialog;
     public event Action OnDialogFinished;
+
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] string voiceName;
 
     public static DialogManager Instance { get; private set; }
     private void Awake()
@@ -65,6 +69,7 @@ public class DialogManager : MonoBehaviour
 
         foreach (var line in dialog.Lines)
         {
+            Speaker.Instance.Speak(line, audioSource, Speaker.Instance.VoiceForName(voiceName));
             yield return TypeDialog(line);
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
         }

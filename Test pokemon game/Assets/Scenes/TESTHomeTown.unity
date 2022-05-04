@@ -6700,6 +6700,8 @@ MonoBehaviour:
     lines:
     - You sense crime is afoot!
     - Go find out what it is.
+    audioSource: {fileID: 0}
+    voiceName: 
 --- !u!61 &356286122
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8836,6 +8838,8 @@ MonoBehaviour:
     lines:
     - I don't sound at all like I'm from the 1920's, do I?
     - 'I''m going to have to work on that. '
+    audioSource: {fileID: 0}
+    voiceName: 
   questToStart: {fileID: 0}
   questToComplete: {fileID: 0}
   movementPattern:
@@ -8907,6 +8911,10 @@ MonoBehaviour:
     - Congratulations for passing your exam and joining the Human Protection Initiative!
     - To perform your duty, you'll need these capture devices to contain the monsters.
       Here, have a few to get you started.
+    audioSource: {fileID: 0}
+    voiceName: 
+  audioSource: {fileID: 0}
+  voiceName: 
 --- !u!114 &1236498152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9021,7 +9029,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1836934442
 Transform:
   m_ObjectHideFlags: 0

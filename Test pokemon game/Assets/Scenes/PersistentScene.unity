@@ -4492,7 +4492,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: -1.11
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -13198,8 +13198,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db83aae31bdd34c46a89799f32146d96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameText: {fileID: 8869461993450643060}
-  levelText: {fileID: 8869461994232292780}
+  partyMemberUINameText: {fileID: 8869461993450643060}
+  partyMemberUILevelText: {fileID: 8869461994232292780}
   hpBar: {fileID: 8869461993493122701}
   isPlayer: 0
 --- !u!114 &3351403195660129665
@@ -13214,8 +13214,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db83aae31bdd34c46a89799f32146d96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameText: {fileID: 8869461993940101906}
-  levelText: {fileID: 8869461993759674570}
+  partyMemberUINameText: {fileID: 8869461993940101906}
+  partyMemberUILevelText: {fileID: 8869461993759674570}
   hpBar: {fileID: 8869461993965812715}
   isPlayer: 0
 --- !u!114 &3351403196570717816
@@ -13230,8 +13230,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db83aae31bdd34c46a89799f32146d96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameText: {fileID: 8869461993232937195}
-  levelText: {fileID: 8869461992302512947}
+  partyMemberUINameText: {fileID: 8869461993232937195}
+  partyMemberUILevelText: {fileID: 8869461992302512947}
   hpBar: {fileID: 8869461993207259154}
   isPlayer: 0
 --- !u!1 &3560320706109050290
@@ -15596,6 +15596,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messageText: {fileID: 3660157102141882242}
+  audioSource: {fileID: 1551207251}
+  voiceName: 
+  pokemonNameText1: {fileID: 7704220207935413571}
+  pokemonLevelText1: {fileID: 7704220208149259931}
+  pokemonNameText2: {fileID: 8869461993940101906}
+  pokemonLevelText2: {fileID: 8869461993759674570}
+  pokemonNameText3: {fileID: 8869461993232937195}
+  pokemonLevelText3: {fileID: 8869461992302512947}
+  pokemonNameText4: {fileID: 8869461993450643060}
+  pokemonLevelText4: {fileID: 8869461994232292780}
 --- !u!1 &3660157100779028843
 GameObject:
   m_ObjectHideFlags: 0
@@ -17858,6 +17868,8 @@ MonoBehaviour:
   choiceBox: {fileID: 1821618817}
   dialogText: {fileID: 4461597680915365517}
   lettersPerSecond: 45
+  audioSource: {fileID: 1551207251}
+  voiceName: 
 --- !u!114 &3660157102121421956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18594,8 +18606,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db83aae31bdd34c46a89799f32146d96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameText: {fileID: 7704220207935413571}
-  levelText: {fileID: 7704220208149259931}
+  partyMemberUINameText: {fileID: 7704220207935413571}
+  partyMemberUILevelText: {fileID: 7704220208149259931}
   hpBar: {fileID: 7704220207977860538}
   isPlayer: 0
 --- !u!114 &4606577430249087632
@@ -19754,6 +19766,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messageText: {fileID: 7479432024464595888}
+  audioSource: {fileID: 1551207251}
+  voiceName: 
+  pokemonNameText1: {fileID: 4606577430810786161}
+  pokemonLevelText1: {fileID: 4606577431698064041}
+  pokemonNameText2: {fileID: 3319594935305244448}
+  pokemonLevelText2: {fileID: 3319594934456104184}
+  pokemonNameText3: {fileID: 3319594933942523097}
+  pokemonLevelText3: {fileID: 3319594933688184577}
+  pokemonNameText4: {fileID: 3319594934697900614}
+  pokemonLevelText4: {fileID: 3319594935080288670}
 --- !u!224 &7479432023638041958
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19977,8 +19999,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db83aae31bdd34c46a89799f32146d96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameText: {fileID: 4606577430810786161}
-  levelText: {fileID: 4606577431698064041}
+  partyMemberUINameText: {fileID: 4606577430810786161}
+  partyMemberUILevelText: {fileID: 4606577431698064041}
   hpBar: {fileID: 4606577430835407240}
   isPlayer: 0
 --- !u!222 &7704220206399161627
@@ -23630,8 +23652,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db83aae31bdd34c46a89799f32146d96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameText: {fileID: 3319594934697900614}
-  levelText: {fileID: 3319594935080288670}
+  partyMemberUINameText: {fileID: 3319594934697900614}
+  partyMemberUILevelText: {fileID: 3319594935080288670}
   hpBar: {fileID: 3319594934722554559}
   isPlayer: 0
 --- !u!114 &8900706892154728883
@@ -23646,8 +23668,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db83aae31bdd34c46a89799f32146d96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameText: {fileID: 3319594935305244448}
-  levelText: {fileID: 3319594934456104184}
+  partyMemberUINameText: {fileID: 3319594935305244448}
+  partyMemberUILevelText: {fileID: 3319594934456104184}
   hpBar: {fileID: 3319594935346683865}
   isPlayer: 0
 --- !u!114 &8900706893452438090
@@ -23662,7 +23684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db83aae31bdd34c46a89799f32146d96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameText: {fileID: 3319594933942523097}
-  levelText: {fileID: 3319594933688184577}
+  partyMemberUINameText: {fileID: 3319594933942523097}
+  partyMemberUILevelText: {fileID: 3319594933688184577}
   hpBar: {fileID: 3319594933901116448}
   isPlayer: 0

@@ -137,6 +137,7 @@ public class BattleDialogBox : MonoBehaviour
             yesText.color = highlightedColor;
             noText.color = Color.black;
         }
+
         else
         {
             yesText.color = Color.black;

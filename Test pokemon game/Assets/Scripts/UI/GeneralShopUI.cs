@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using Crosstales.RTVoice;
 
 public class GeneralShopUI : MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class GeneralShopUI : MonoBehaviour
 
     [SerializeField] Image upArrow;
     [SerializeField] Image downArrow;
+
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] string voiceName;
+    bool spoken = false;
 
     int selectedItem;
 
@@ -53,9 +58,16 @@ public class GeneralShopUI : MonoBehaviour
         var prevSelection = selectedItem;
 
         if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+
             ++selectedItem;
+        }
+
         else if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+
             --selectedItem;
+        }
 
         selectedItem = Mathf.Clamp(selectedItem, 0, availableItems.Count - 1);
 
@@ -63,9 +75,16 @@ public class GeneralShopUI : MonoBehaviour
             UpdateItemSelection();
 
         if (Input.GetKeyDown(KeyCode.Z))
+        {
             onItemSelected?.Invoke(availableItems[selectedItem]);
+        }
+
         else if (Input.GetKeyDown(KeyCode.X))
+
+        {
+
             onBack?.Invoke();
+        }
     }
 
     void UpdateItemList()

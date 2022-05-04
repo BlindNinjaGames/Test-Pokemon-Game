@@ -40,9 +40,13 @@ public class ChoiceBox : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
             ++currentChoice;
+        }
         else if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
             --currentChoice;
+        }
 
         currentChoice = Mathf.Clamp(currentChoice, 0, choiceTexts.Count - 1);
 

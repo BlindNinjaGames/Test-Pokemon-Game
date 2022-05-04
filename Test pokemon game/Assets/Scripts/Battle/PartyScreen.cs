@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Crosstales.RTVoice;
 
 public class PartyScreen : MonoBehaviour
 {
@@ -14,6 +15,24 @@ public class PartyScreen : MonoBehaviour
     PokemonParty party;
 
     int selection = 0;
+
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] string voiceName;
+    bool spoken = false;
+
+    PartyMemberUI partyMemberUI;
+
+    [SerializeField] TextMeshProUGUI pokemonNameText1;
+    [SerializeField] TextMeshProUGUI pokemonLevelText1;
+
+    [SerializeField] TextMeshProUGUI pokemonNameText2;
+    [SerializeField] TextMeshProUGUI pokemonLevelText2;
+
+    [SerializeField] TextMeshProUGUI pokemonNameText3;
+    [SerializeField] TextMeshProUGUI pokemonLevelText3;
+
+    [SerializeField] TextMeshProUGUI pokemonNameText4;
+    [SerializeField] TextMeshProUGUI pokemonLevelText4;
 
     public Pokemon SelectedMember => pokemons[selection];
 
@@ -49,6 +68,7 @@ public class PartyScreen : MonoBehaviour
 
         UpdateMemberSelection(selection);
 
+
         messageText.text = "Choose a Pokemon";
     }
 
@@ -56,14 +76,160 @@ public class PartyScreen : MonoBehaviour
     {
         var prevSelection = selection;
 
+        if (!spoken)
+        {
+            if (selection == 0)
+            {
+                Debug.Log(pokemonNameText1.text + " level " + pokemonLevelText1.text);
+                Speaker.Instance.Speak(pokemonNameText1.text + " level " + pokemonLevelText1.text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+
+            else if (selection == 1)
+            {
+                Debug.Log(pokemonNameText2.text + " level " + pokemonLevelText2.text);
+                Speaker.Instance.Speak(pokemonNameText2.text + " level " + pokemonLevelText2.text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+
+            else if (selection == 2)
+            {
+                Speaker.Instance.Speak(pokemonNameText3.text + " level " + pokemonLevelText3.text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+
+            else if (selection == 3)
+            {
+                Speaker.Instance.Speak(pokemonNameText4.text + " level " + pokemonLevelText4.text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+
+            spoken = true;
+        }
+
         if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            spoken = false;
+
             ++selection;
+
+            if (!spoken)
+            {
+                if (selection == 0)
+                {
+                    Debug.Log(pokemonNameText1.text + " level " + pokemonLevelText1.text);
+                    Speaker.Instance.Speak(pokemonNameText1.text + " level " + pokemonLevelText1.text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+                }
+
+                else if (selection == 1)
+                {
+                    Debug.Log(pokemonNameText2.text + " level " + pokemonLevelText2.text);
+                    Speaker.Instance.Speak(pokemonNameText2.text + " level " + pokemonLevelText2.text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+                }
+
+                else if (selection == 2)
+                {
+                    Speaker.Instance.Speak(pokemonNameText3.text + " level " + pokemonLevelText3.text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+                }
+
+                else if (selection == 3)
+                {
+                    Speaker.Instance.Speak(pokemonNameText4.text + " level " + pokemonLevelText4.text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+                }
+
+                spoken = true;
+            }
+
+        }
+
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            spoken = false;
+
             --selection;
+
+            if (!spoken)
+            {
+                if (selection == 0)
+                {
+                    Debug.Log(pokemonNameText1.text + " level " + pokemonLevelText1.text);
+                    Speaker.Instance.Speak(pokemonNameText1.text + " level " + pokemonLevelText1.text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+                }
+
+                else if (selection == 1)
+                {
+                    Debug.Log(pokemonNameText2.text + " level " + pokemonLevelText2.text);
+                    Speaker.Instance.Speak(pokemonNameText2.text + " level " + pokemonLevelText2.text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+                }
+
+                else if (selection == 2)
+                {
+                    Speaker.Instance.Speak(pokemonNameText3.text + " level " + pokemonLevelText3.text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+                }
+
+                else if (selection == 3)
+                {
+                    Speaker.Instance.Speak(pokemonNameText4.text + " level " + pokemonLevelText4.text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+                }
+
+                spoken = true;
+            }
+        }
+
         else if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            spoken = false;            
             selection += 2;
+
+            if (!spoken)
+            {
+                if (selection == 0)
+                {
+                    Debug.Log(pokemonNameText1.text + " level " + pokemonLevelText1.text);
+                    Speaker.Instance.Speak(pokemonNameText1.text + " level " + pokemonLevelText1.text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+                }
+
+                else if (selection == 1)
+                {
+                    Debug.Log(pokemonNameText2.text + " level " + pokemonLevelText2.text);
+                    Speaker.Instance.Speak(pokemonNameText2.text + " level " + pokemonLevelText2.text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+                }
+
+                else if (selection == 2)
+                {
+                    Speaker.Instance.Speak(pokemonNameText3.text + " level " + pokemonLevelText3.text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+                }
+
+                else if (selection == 3)
+                {
+                    Speaker.Instance.Speak(pokemonNameText4.text + " level " + pokemonLevelText4.text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+                }
+
+                spoken = true;
+            }
+        }
         else if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            spoken = false;
+
             selection -= 2;
+
+            if (selection == 0)
+            {
+                Speaker.Instance.Speak(pokemonNameText1.text + pokemonLevelText1.text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+
+            else if (selection == 1)
+            {
+                Speaker.Instance.Speak(pokemonNameText2.text + pokemonLevelText2.text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+
+            else if (selection == 2)
+            {
+                Speaker.Instance.Speak(pokemonNameText3.text + pokemonLevelText3.text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+
+            else if (selection == 3)
+            {
+                Speaker.Instance.Speak(pokemonNameText4.text + pokemonLevelText4.text, audioSource, Speaker.Instance.VoiceForName(voiceName));
+            }
+        }
 
         selection = Mathf.Clamp(selection, 0, pokemons.Count - 1);
 
@@ -74,8 +240,10 @@ public class PartyScreen : MonoBehaviour
         {
             onSelected?.Invoke();
         }
+
         else if (Input.GetKeyDown(KeyCode.X))
         {
+            spoken = false;
             onBack?.Invoke();
         }
     }
