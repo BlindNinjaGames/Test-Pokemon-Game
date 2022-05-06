@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Crosstales.RTVoice;
 
 [System.Serializable]
 public class Quest
 {
     public SO_QuestBase Base { get; private set; }
     public QuestStatus Status { get; private set; }
+
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] string voiceName;
 
     public Quest(SO_QuestBase _base)
     {
@@ -56,6 +60,7 @@ public class Quest
             inventory.AddItem(Base.RewardItem);
 
             string playerName = player.GetComponent<PlayerController>().Name;
+            Speaker.Instance.Speak(playerName + " received " + Base.RewardItem.Name, audioSource, Speaker.Instance.VoiceForName(voiceName));
             yield return DialogManager.Instance.ShowDialogText($"{playerName} received {Base.RewardItem.Name}");
         }
 

@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Crosstales.RTVoice;
 
 public class Pickup : MonoBehaviour, Interactable, ISavable
 {
     [SerializeField] SO_ItemBase item;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] string voiceName;
 
     public bool Used { get; set; } = false;
 
@@ -21,6 +24,7 @@ public class Pickup : MonoBehaviour, Interactable, ISavable
 
             string playerName = initiator.GetComponent<PlayerController>().Name;
 
+            Speaker.Instance.Speak(playerName + " found " + item.Name, audioSource, Speaker.Instance.VoiceForName(voiceName));
             yield return DialogManager.Instance.ShowDialogText($"{playerName} found {item.Name}");
         }
     }

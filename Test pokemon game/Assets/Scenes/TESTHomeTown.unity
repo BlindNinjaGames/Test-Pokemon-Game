@@ -6868,6 +6868,111 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &760700949
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3414229729430515288, guid: 62e9b3cb0fb44084e818d7d0c7f377fc, type: 3}
+      propertyPath: moveSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3414229729430515290, guid: 62e9b3cb0fb44084e818d7d0c7f377fc, type: 3}
+      propertyPath: dialog.lines.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3414229729430515290, guid: 62e9b3cb0fb44084e818d7d0c7f377fc, type: 3}
+      propertyPath: dialog.lines.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3414229729430515290, guid: 62e9b3cb0fb44084e818d7d0c7f377fc, type: 3}
+      propertyPath: dialog.lines.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3414229729430515290, guid: 62e9b3cb0fb44084e818d7d0c7f377fc, type: 3}
+      propertyPath: movementPattern.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3414229729430515295, guid: 62e9b3cb0fb44084e818d7d0c7f377fc, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3414229729430515295, guid: 62e9b3cb0fb44084e818d7d0c7f377fc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3414229729430515295, guid: 62e9b3cb0fb44084e818d7d0c7f377fc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3414229729430515295, guid: 62e9b3cb0fb44084e818d7d0c7f377fc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3414229729430515295, guid: 62e9b3cb0fb44084e818d7d0c7f377fc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3414229729430515295, guid: 62e9b3cb0fb44084e818d7d0c7f377fc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3414229729430515295, guid: 62e9b3cb0fb44084e818d7d0c7f377fc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3414229729430515295, guid: 62e9b3cb0fb44084e818d7d0c7f377fc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3414229729430515295, guid: 62e9b3cb0fb44084e818d7d0c7f377fc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3414229729430515295, guid: 62e9b3cb0fb44084e818d7d0c7f377fc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3414229729430515295, guid: 62e9b3cb0fb44084e818d7d0c7f377fc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3414229729430515297, guid: 62e9b3cb0fb44084e818d7d0c7f377fc, type: 3}
+      propertyPath: m_Name
+      value: NPCtest
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 62e9b3cb0fb44084e818d7d0c7f377fc, type: 3}
+--- !u!1 &760700950 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3414229729430515297, guid: 62e9b3cb0fb44084e818d7d0c7f377fc, type: 3}
+  m_PrefabInstance: {fileID: 760700949}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &760700951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 760700950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3958667dbce8c944e9a3b607084abb81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startPokemon:
+  - _base: {fileID: 11400000, guid: 33be44789e0b9d5429074a804a8ed9a2, type: 2}
+    level: 5
+  - _base: {fileID: 11400000, guid: bb5e920b08004fd4ebc9e265dbfb13a3, type: 2}
+    level: 5
+  - _base: {fileID: 11400000, guid: a40bc6ebdc92d9f43a03ef168e2b7da5, type: 2}
+    level: 5
+  introText: Hi test
+  selectionText: Pick one
+  audioSource: {fileID: 0}
+  voiceName: 
 --- !u!1 &989424806
 GameObject:
   m_ObjectHideFlags: 0

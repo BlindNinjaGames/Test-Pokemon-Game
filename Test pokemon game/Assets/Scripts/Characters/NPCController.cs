@@ -24,6 +24,7 @@ public class NPCController : MonoBehaviour, Interactable, ISavable
     PokemonGiver pokemonGiver;
     Healer healer;
     GeneralMerchant merchant;
+    PokemonStartSelection pokemonStartSelection;
     private void Awake()
     {
         character = GetComponent<Character>();
@@ -31,6 +32,7 @@ public class NPCController : MonoBehaviour, Interactable, ISavable
         pokemonGiver = GetComponent<PokemonGiver>();
         healer = GetComponent<Healer>();
         merchant = GetComponent<GeneralMerchant>();
+        pokemonStartSelection = GetComponent<PokemonStartSelection>();
     }
 
     public IEnumerator Interact(Transform initiator)
@@ -89,6 +91,12 @@ public class NPCController : MonoBehaviour, Interactable, ISavable
             {
                 yield return merchant.Trade();
             }
+
+            else if (pokemonStartSelection != null && !pokemonStartSelection.ReceivedFirstPokemon())
+            {
+                yield return pokemonStartSelection.SelectStartPokemon(initiator.GetComponent<PlayerController>());
+            }
+
             else
             {
                 yield return DialogManager.Instance.ShowDialog(dialog);

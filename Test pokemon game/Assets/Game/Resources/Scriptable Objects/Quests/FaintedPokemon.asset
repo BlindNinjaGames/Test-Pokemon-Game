@@ -18,13 +18,19 @@ MonoBehaviour:
     lines:
     - Oh no! My monster has fainted and I can't revive it!
     - Please, please! Bring me a revive!
+    audioSource: {fileID: 0}
+    voiceName: 
   inProgressDialogue:
     lines:
     - Did you bring the revive I asked for?
+    audioSource: {fileID: 0}
+    voiceName: 
   completedDialogue:
     lines:
     - Yay! Thanks! Here, have this weak elixir.
     - I should have used it when my monster's health got low.
-    - Don't make my mistake and keep an eye on your monster's helath.
+    - Don't make my mistake and keep an eye on your monster's health.
+    audioSource: {fileID: 0}
+    voiceName: 
   requiredItem: {fileID: 11400000, guid: 4b14b4b9e4b34404e8aac4c62cf1d9b1, type: 2}
   rewardItem: {fileID: 11400000, guid: 3e9ed60e60ead1947aa3146fc435a556, type: 2}
