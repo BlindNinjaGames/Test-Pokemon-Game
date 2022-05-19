@@ -1311,7 +1311,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7ef9774e3c0bf9a4bbf48547a6c1a91c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cebb31ed903bf87449ca2677cd18d1d2, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1353,6 +1353,8 @@ MonoBehaviour:
   typeText: {fileID: 4481428910091030601}
   yesText: {fileID: 0}
   noText: {fileID: 0}
+  audioSource: {fileID: 0}
+  voiceName: 
 --- !u!1 &4481428911408163496
 GameObject:
   m_ObjectHideFlags: 0

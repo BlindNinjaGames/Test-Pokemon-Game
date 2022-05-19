@@ -16,9 +16,15 @@ MonoBehaviour:
   description: Get Blastoise
   startDialogue:
     lines: []
+    audioSource: {fileID: 0}
+    voiceName: 
   inProgressDialogue:
     lines: []
+    audioSource: {fileID: 0}
+    voiceName: 
   completedDialogue:
     lines: []
+    audioSource: {fileID: 7327850633436192067, guid: 15f86ce84333b63479736cd93e65b6f0, type: 3}
+    voiceName: 
   requiredItem: {fileID: 0}
   rewardItem: {fileID: 0}

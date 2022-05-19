@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 using TMPro;
 using Crosstales.RTVoice;
 
@@ -35,6 +36,7 @@ public class PartyScreen : MonoBehaviour
     [SerializeField] TextMeshProUGUI pokemonLevelText4;
 
     public Pokemon SelectedMember => pokemons[selection];
+    SO_PokemonBase pokemonBase;
 
     /// <summary>
     /// Party screen can be called from different states like ActionSelection, RunningTurn, AboutToUse

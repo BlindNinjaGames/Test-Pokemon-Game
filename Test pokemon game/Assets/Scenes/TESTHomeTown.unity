@@ -123,6 +123,133 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &205084376
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 205084378}
+  - component: {fileID: 205084377}
+  m_Layer: 0
+  m_Name: RTVoice Audio Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &205084377
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205084376}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &205084378
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205084376}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &238765276
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,7 +619,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: ab6c2480276b8df4daff83a84ef3e1b5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -857,7 +984,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: ab6c2480276b8df4daff83a84ef3e1b5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6783,6 +6910,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3142434254424432179, guid: 8f5442bf3126fd240a6ef9bef0731007, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3a71aca4b2811444c82a61ef3d45457f, type: 2}
     - target: {fileID: 3142434254424432180, guid: 8f5442bf3126fd240a6ef9bef0731007, type: 3}
       propertyPath: m_Name
       value: TrainerTest
@@ -6806,7 +6937,7 @@ PrefabInstance:
     - target: {fileID: 3142434254424432181, guid: 8f5442bf3126fd240a6ef9bef0731007, type: 3}
       propertyPath: pokemons.Array.data[2]._base
       value: 
-      objectReference: {fileID: 11400000, guid: a40bc6ebdc92d9f43a03ef168e2b7da5, type: 2}
+      objectReference: {fileID: 11400000, guid: 33be44789e0b9d5429074a804a8ed9a2, type: 2}
     - target: {fileID: 3142434254424432181, guid: 8f5442bf3126fd240a6ef9bef0731007, type: 3}
       propertyPath: pokemons.Array.data[2].level
       value: 1
@@ -6819,6 +6950,14 @@ PrefabInstance:
       propertyPath: battleUnitCount
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3142434254424432182, guid: 8f5442bf3126fd240a6ef9bef0731007, type: 3}
+      propertyPath: dialog.audioSource
+      value: 
+      objectReference: {fileID: 205084377}
+    - target: {fileID: 3142434254424432182, guid: 8f5442bf3126fd240a6ef9bef0731007, type: 3}
+      propertyPath: dialogAfterBattle.audioSource
+      value: 
+      objectReference: {fileID: 205084377}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f5442bf3126fd240a6ef9bef0731007, type: 3}
 --- !u!1 &617322283
@@ -6895,6 +7034,10 @@ PrefabInstance:
       propertyPath: movementPattern.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3414229729430515294, guid: 62e9b3cb0fb44084e818d7d0c7f377fc, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3a71aca4b2811444c82a61ef3d45457f, type: 2}
     - target: {fileID: 3414229729430515295, guid: 62e9b3cb0fb44084e818d7d0c7f377fc, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -6971,7 +7114,7 @@ MonoBehaviour:
     level: 5
   introText: Hi test
   selectionText: Pick one
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 205084377}
   voiceName: 
 --- !u!1 &989424806
 GameObject:
@@ -8834,7 +8977,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 3a71aca4b2811444c82a61ef3d45457f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9016,9 +9159,9 @@ MonoBehaviour:
     - Congratulations for passing your exam and joining the Human Protection Initiative!
     - To perform your duty, you'll need these capture devices to contain the monsters.
       Here, have a few to get you started.
-    audioSource: {fileID: 0}
+    audioSource: {fileID: 6718501823974918621, guid: e1fdee5bd90e0244d94f0216046a6dbb, type: 3}
     voiceName: 
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 6718501823974918621, guid: e1fdee5bd90e0244d94f0216046a6dbb, type: 3}
   voiceName: 
 --- !u!114 &1236498152
 MonoBehaviour:
@@ -9088,6 +9231,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3142434254424432179, guid: 8f5442bf3126fd240a6ef9bef0731007, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3a71aca4b2811444c82a61ef3d45457f, type: 2}
     - target: {fileID: 3142434254424432180, guid: 8f5442bf3126fd240a6ef9bef0731007, type: 3}
       propertyPath: m_Name
       value: TrainerTest (1)
@@ -9116,6 +9263,14 @@ PrefabInstance:
       propertyPath: battleUnitCount
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3142434254424432182, guid: 8f5442bf3126fd240a6ef9bef0731007, type: 3}
+      propertyPath: dialog.audioSource
+      value: 
+      objectReference: {fileID: 205084377}
+    - target: {fileID: 3142434254424432182, guid: 8f5442bf3126fd240a6ef9bef0731007, type: 3}
+      propertyPath: dialogAfterBattle.audioSource
+      value: 
+      objectReference: {fileID: 205084377}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f5442bf3126fd240a6ef9bef0731007, type: 3}
 --- !u!1 &1836934441
@@ -9134,7 +9289,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1836934442
 Transform:
   m_ObjectHideFlags: 0
@@ -9218,7 +9373,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: ab6c2480276b8df4daff83a84ef3e1b5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11095,6 +11250,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4843719640726692914, guid: 06487a5c7139a5d46a60014b27c6df94, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3a71aca4b2811444c82a61ef3d45457f, type: 2}
     - target: {fileID: 4843719640726692916, guid: 06487a5c7139a5d46a60014b27c6df94, type: 3}
       propertyPath: m_Name
       value: Pickup

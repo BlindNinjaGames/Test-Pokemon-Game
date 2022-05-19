@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8c2377f70c775b4587e8ee3f4b45a58, type: 3}
-  m_Name: Burn
+  m_Name: Sing
   m_EditorClassIdentifier: 
   name: Sing
-  description: Burns opponent
+  description: Sleeps opponent
   type: 0
   power: 0
-  accuracy: 45
+  accuracy: 100
   alwaysHits: 0
   pp: 15
   priority: 0

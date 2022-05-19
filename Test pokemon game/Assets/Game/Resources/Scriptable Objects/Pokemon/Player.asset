@@ -19,6 +19,7 @@ MonoBehaviour:
   type1: 1
   type2: 0
   hasNose: 1
+  isPlayer: 1
   maxHp: 45
   attack: 30
   defense: 35

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Crosstales.RTVoice;
 
 public enum ShopState { Menu, Buying, Selling, Busy }
 
@@ -19,6 +20,10 @@ public class GeneralShopController : MonoBehaviour
     public event Action OnFinish;
 
     ShopState state;
+
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] string voiceName;
+    bool spoken = false;
 
     public static GeneralShopController i { get; private set; }
     private void Awake()
@@ -45,6 +50,7 @@ public class GeneralShopController : MonoBehaviour
         state = ShopState.Menu;
 
         int selectedChoice = 0;
+        Speaker.Instance.Speak("See anything you like? Buy.", audioSource, Speaker.Instance.VoiceForName(voiceName));
         yield return DialogManager.Instance.ShowDialogText("See anything you like?",
             waitForInput: false,
             choices: new List<string>() { "Buy", "Sell", "Quit" },
@@ -98,6 +104,7 @@ public class GeneralShopController : MonoBehaviour
 
         if (!item.IsSellable)
         {
+            Speaker.Instance.Speak("You can't sell that!", audioSource, Speaker.Instance.VoiceForName(voiceName));
             yield return DialogManager.Instance.ShowDialogText("You can't sell that!");
             state = ShopState.Selling;
             yield break;
@@ -111,7 +118,8 @@ public class GeneralShopController : MonoBehaviour
         int itemCount = inventory.GetItemCount(item);
         if (itemCount > 1)
         {
-            yield return DialogManager.Instance.ShowDialogText($"How many would you like to sell?",
+            Speaker.Instance.Speak("How many would you like to sell?", audioSource, Speaker.Instance.VoiceForName(voiceName));
+            yield return DialogManager.Instance.ShowDialogText("How many would you like to sell?",
                 waitForInput: false, autoClose: false);
 
             yield return countSelectorUI.ShowSelector(itemCount, sellingPrice,
@@ -123,7 +131,8 @@ public class GeneralShopController : MonoBehaviour
         sellingPrice = sellingPrice * countToSell;
 
         int selectedChoice = 0;
-        yield return DialogManager.Instance.ShowDialogText($"I can give you {sellingPrice} for that. Would you like to sell?",
+        Speaker.Instance.Speak("I can give you " + sellingPrice + " dollars for that. Would you like to sell?", audioSource, Speaker.Instance.VoiceForName(voiceName));
+        yield return DialogManager.Instance.ShowDialogText("I can give you " + sellingPrice + " dollars for that. Would you like to sell?",
             waitForInput: false,
             choices: new List<string>() { "Yes", "No" },
             onChoiceSelected: choiceIndex => selectedChoice = choiceIndex);
@@ -133,7 +142,8 @@ public class GeneralShopController : MonoBehaviour
             // Yes
             inventory.RemoveItem(item, countToSell);
             Wallet.i.AddMoney(sellingPrice);
-            yield return DialogManager.Instance.ShowDialogText($"Turned over {item.Name} and received {sellingPrice}!");
+            Speaker.Instance.Speak("Turned over " + item.Name + " and received " + sellingPrice + " dollars!", audioSource, Speaker.Instance.VoiceForName(voiceName));
+            yield return DialogManager.Instance.ShowDialogText("Turned over " + item.Name + " and received " + sellingPrice + "!");
         }
 
         walletUI.Close();
@@ -145,6 +155,7 @@ public class GeneralShopController : MonoBehaviour
     {
         state = ShopState.Busy;
 
+        Speaker.Instance.Speak("How many would you like to buy?", audioSource, Speaker.Instance.VoiceForName(voiceName));
         yield return DialogManager.Instance.ShowDialogText("How many would you like to buy?",
             waitForInput: false, autoClose: false);
 
@@ -159,7 +170,8 @@ public class GeneralShopController : MonoBehaviour
         if (Wallet.i.HasMoney(totalPrice))
         {
             int selectedChoice = 0;
-            yield return DialogManager.Instance.ShowDialogText($"That will be {totalPrice}",
+            Speaker.Instance.Speak("That will be " + totalPrice + " dollars.", audioSource, Speaker.Instance.VoiceForName(voiceName));
+            yield return DialogManager.Instance.ShowDialogText("That will be " + totalPrice,
                 waitForInput: false,
                 choices: new List<string>() { "Yes", "No" },
                 onChoiceSelected: choiceIndex => selectedChoice = choiceIndex);
@@ -169,11 +181,13 @@ public class GeneralShopController : MonoBehaviour
                 // Selected Yes
                 inventory.AddItem(item, countToBuy);
                 Wallet.i.TakeMoney(totalPrice);
+                Speaker.Instance.Speak("Thank you for shopping with us!", audioSource, Speaker.Instance.VoiceForName(voiceName));
                 yield return DialogManager.Instance.ShowDialogText("Thank you for shopping with us!");
             }
         }
         else
         {
+            Speaker.Instance.Speak("Not enough money for that!", audioSource, Speaker.Instance.VoiceForName(voiceName));
             yield return DialogManager.Instance.ShowDialogText("Not enough money for that!");
         }
 

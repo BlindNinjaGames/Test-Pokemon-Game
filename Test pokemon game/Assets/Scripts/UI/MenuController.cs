@@ -66,7 +66,7 @@ public class MenuController : MonoBehaviour
             if (i == selectedItem)
                 menuItems[i].color = GlobalSettings.i.HighlightedColor;
             else
-                menuItems[i].color = Color.black;
+                menuItems[i].color = Color.white;
         }
     }
 }

@@ -20,7 +20,7 @@ public class ChoiceText : MonoBehaviour
 
     public void SetSelected(bool selected)
     {
-        text.color = (selected) ? GlobalSettings.i.HighlightedColor : Color.black;
+        text.color = (selected) ? GlobalSettings.i.HighlightedColor : Color.white;
 
         if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.UpArrow))
         {

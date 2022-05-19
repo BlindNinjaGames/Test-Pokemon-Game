@@ -16,7 +16,8 @@ public class SO_PokemonBase : ScriptableObject
     [SerializeField] PokemonType type1;
     [SerializeField] PokemonType type2;
 
-    [SerializeField] bool hasNose;
+    [SerializeField] public bool hasNose;
+    [SerializeField] public bool isPlayer;
 
     // Base Stats
     [SerializeField] int maxHp;
@@ -139,6 +140,11 @@ public class SO_PokemonBase : ScriptableObject
     public int Speed
     {
         get { return speed; }
+    }
+
+    public bool IsPlayer
+    {
+        get { return isPlayer; }
     }
 
     public List<LearnableMove> LearnableMoves
